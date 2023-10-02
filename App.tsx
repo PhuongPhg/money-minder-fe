@@ -64,7 +64,6 @@ function App(): JSX.Element {
   };
 
   const performInitialSetup = useCallback(() => {
-    console.log('hjide');
     const splashWaitTime = Math.max(0, 2000);
     setTimeout(() => SplashScreen.hide(), splashWaitTime);
   }, []);
