@@ -5,7 +5,7 @@
  * @format
  */
 
-import React from 'react';
+import React, {useCallback, useEffect} from 'react';
 import type {PropsWithChildren} from 'react';
 import {
   SafeAreaView,
@@ -16,6 +16,7 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+import SplashScreen from 'react-native-splash-screen';
 
 import {
   Colors,
@@ -61,6 +62,18 @@ function App(): JSX.Element {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+
+  const performInitialSetup = useCallback(() => {
+    console.log('hjide');
+    const splashWaitTime = Math.max(0, 2000);
+    setTimeout(() => SplashScreen.hide(), splashWaitTime);
+  }, []);
+
+  useEffect(() => {
+    performInitialSetup();
+    // Loop when push this to hook
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <SafeAreaView style={backgroundStyle}>
